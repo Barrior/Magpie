@@ -52,9 +52,9 @@ module.exports = {
         "react/jsx-closing-bracket-location": 0,
         "react/jsx-no-bind": 0,
         "react/jsx-indent-props": 0,
-        "react/jsx-indent": ['error', 4],
-        "react/jsx-filename-extension": ['error', { extensions: ['.jsx', '.js'] }],
-        "react/jsx-wrap-multilines": ['error', {
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".js"] }],
+        "react/jsx-wrap-multilines": ["error", {
             declaration: true,
             assignment: true,
             return: false,
