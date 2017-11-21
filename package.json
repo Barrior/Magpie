@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "A validated JavaScript RegExp library.",
   "scripts": {
-    "test": "ava --verbose"
+    "test": "ava --verbose",
+    "build": "npm run test && node ./bin/build"
   },
   "ava": {
     "require": [
