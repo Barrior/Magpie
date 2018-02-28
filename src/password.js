@@ -1,9 +1,13 @@
 /**
- * Author: Barrior
- */
-
-/**
  * 规则：
- * 匹配输入的全是英文字符或数字，没有一点中文，日文等特殊字符
+ * 无非英文字符、数字的输入
  */
-export default /^[\w\s`~!@#\$%\^&\*\(\)\-\+=\\\|\[\]\{\};:\'\",\.<>/\?]+$/
+export const $password = /^[\w\s`~!@#\$%\^&\*\(\)\-\+=\\\|\[\]\{\};:\'\",\.<>/\?]+$/;
+export const isPassword = (value) => {
+    return $password.test(value);
+};
+
+export const $noPassword = /[^[\w\s`~!@#\$%\^&\*\(\)\-\+=\\\|\[\]\{\};:\'\",\.<>/\?]]*/g;
+export const formatPassword = (value) => {
+    return value.replace($noPassword, '');
+};

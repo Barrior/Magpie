@@ -1,8 +1,4 @@
 /**
- * Author: Barrior
- */
-
-/**
  * Docs:
  * tel.test('13100001111')       =>      true
  */
