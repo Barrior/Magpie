@@ -8,5 +8,3 @@ modules.forEach((obj) => {
         exports[key] = obj[key];
     });
 });
-
-delete exports.__esModule;

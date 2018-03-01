@@ -1,6 +1,20 @@
-.idea/
+.DS_Store
 node_modules/
-npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+/dist/
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Test coverage and report related directories and files
 coverage
 .nyc_output
 .coveralls.yml

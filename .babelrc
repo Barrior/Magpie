@@ -1,6 +1,12 @@
 {
   "presets": [
-    "es2015",
-    "stage-0",
+    ["env", {
+      "loose": true,
+      "targets": {
+        "browsers": ["> 1%"],
+        "node": "6.0"
+      }
+    }],
+    "stage-2"
   ]
 }
