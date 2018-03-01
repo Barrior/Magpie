@@ -1,40 +1,15 @@
 #!/usr/bin/env node
 const fs = require('fs')
-const chalk = require('chalk');
+const chalk = require('chalk')
 const babel = require('babel-core')
-const UglifyJS = require('uglify-js')
+const uglifyJS = require('uglify-js')
 const jsBeautify = require('js-beautify').js_beautify
 const utils = require('./utils')
 
-// compile syntax
-function getAllFilename() {
-
-}
-function createFilesQueue() {
-    class Queue {
-        constructor (allFilename) {
-            this.storage = allFilename;
-        }
-        enqueue () {
-
-        }
-        dequeue (fn) {
-            const element = this.storage.shift()
-            if (element) {
-                fn(element)
-            } else {
-                this.emit('end')
-            }
-        }
-        on () {
-
-        }
-    }
-    return new Queue(allFilename)
-}
+// transform files to the "server" directory
 function transformFiles() {
-    const allFilename = getAllFilename()
-    const filesQueue = createFilesQueue(allFilename)
+    const allFilename = fs.readdirSync(utils.resolveSrcPath())
+    const filesQueue = new utils.Queue(allFilename)
     filesQueue.on('end', () => {
         const modules = [];
         allFilename.forEach((filename) => {
@@ -54,8 +29,9 @@ function transformFiles() {
 
     const options = {
         env: {production: true}
-    }
-    +function transformStart() {
+    };
+
+    (function transformStart() {
         filesQueue.dequeue((filename) => {
             const result = babel.transformFileSync(utils.resolveSrcPath(filename), options)
             const filePath = `server/${filename}`
@@ -63,15 +39,14 @@ function transformFiles() {
             console.log(`${chalk.green(filePath)} create succeeded`)
             transformStart()
         })
-    }()
+    })()
 }
-
 
 transformFiles()
 
 return;
 
-// browser mode
+// grenarater browser mode
 const Magpie = require('../dist/server/magpie')
 
 const content = []
@@ -91,7 +66,7 @@ fs.writeFile('../dist/browser/magpie.js', jsBeautify(data), (err) => {
     console.log(`"magpie.js" create succeeded`)
 })
 
-fs.writeFile('../dist/browser/magpie.min.js', UglifyJS.minify(data).code, (err) => {
+fs.writeFile('../dist/browser/magpie.min.js', uglifyJS.minify(data).code, (err) => {
     if (err) throw err
     console.log(`"magpie.min.js" create succeeded`)
 })
