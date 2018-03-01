@@ -1,20 +1,27 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const UMDHeader = `
-+function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory();
-    } else {
-        root.Magpie = factory();
-    }
-}(typeof window !== 'undefined' ? window : this, function () {
-    return {
-`;
-const UMDFooter = `
-    };
+const UglifyJS = require('uglify-js');
+const jsBeautify = require('js-beautify').js_beautify;
+const Magpie = require('../dist/server/magpie');
+
+const content = []
+Object.keys(Magpie).forEach((key) => {
+    content.push(`var ${key} = Magpie.${key} = ${Magpie[key]}\n`)
+})
+
+const data = `\
++function () {
+    if (!window.Magpie) window.Magpie = {};\n
+    ${content.join('')}
+}();\
+`
+
+fs.writeFile('../dist/browser/magpie.js', jsBeautify(data), (err) => {
+    if (err) throw err;
+    console.log(`"magpie.js" create succeeded`);
 });
-`;
-// like this: ['qq: /^[1-9]\\d{4,11}$/,', 'telCN: /^1[345789]\\d{9}$/']
-const content = [];
+
+fs.writeFile('../dist/browser/magpie.min.js', UglifyJS.minify(data).code, (err) => {
+    if (err) throw err;
+    console.log(`"magpie.min.js" create succeeded`);
+});
