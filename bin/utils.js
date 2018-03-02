@@ -9,7 +9,7 @@ exports.resolveSrcPath = (filePath = '') => {
     return path.resolve(__dirname, `../src/${filePath}`)
 }
 
-exports.resolveDistPath = (filePath) => {
+exports.resolveDistPath = (filePath = '') => {
     return path.resolve(__dirname, `../dist/${filePath}`)
 }
 

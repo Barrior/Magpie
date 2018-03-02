@@ -12,4 +12,7 @@
  * https://baike.baidu.com/item/%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81/1417348?fr=aladdin
  * 采用宽松模式，只匹配前两位的正确格式
  */
-export default /^1[345789]\d{9}$/;
+export const $telCN = /^1[345789]\d{9}$/
+export const isTelCN = (value) => {
+    return $telCN.test(value)
+}

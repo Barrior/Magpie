@@ -14,7 +14,7 @@
  *
  * 要求 5~12 位（先保留到 12 位），不能以 0 开头，只能是数字
  */
-export const $qq = /^[1-9]\d{4,11}$/;
+export const $qq = /^[1-9]\d{4,11}$/
 export const isQQ = (value) => {
-    return $qq.test(value);
-};
+    return $qq.test(value)
+}

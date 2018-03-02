@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A validated JavaScript RegExp library.",
   "scripts": {
-    "test": "ava --verbose",
     "lint": "eslint --ext .js src,test",
+    "test": "ava --verbose",
     "build": "npm run lint && npm test && node ./bin/build"
   },
   "ava": {
@@ -29,6 +29,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "js-beautify": "^1.7.5",
+    "shelljs": "^0.8.1",
     "uglify-js": "^3.3.12"
   },
   "license": "MIT"

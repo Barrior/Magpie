@@ -4,27 +4,40 @@ const chalk = require('chalk')
 const babel = require('babel-core')
 const uglifyJS = require('uglify-js')
 const jsBeautify = require('js-beautify').js_beautify
+const shell = require('shelljs')
 const utils = require('./utils')
 
+const allFilename = fs.readdirSync(utils.resolveSrcPath())
+
+function clearUpDistDir() {
+    shell.rm('-rf', utils.resolveDistPath())
+
+    const directories = []
+    ;['', 'browser', 'server'].forEach((dirName) => {
+        directories.push(utils.resolveDistPath(dirName))
+    })
+
+    shell.mkdir('-p', directories)
+}
+
 // transform files to the "server" directory
-function transformFiles() {
-    const allFilename = fs.readdirSync(utils.resolveSrcPath())
+function transformFilesToServerDir() {
     const filesQueue = new utils.Queue(allFilename)
     filesQueue.on('end', () => {
         const modules = [];
         allFilename.forEach((filename) => {
             modules.push(`require('./${filename}'),\n`)
         })
-        const data = `\
+        const data = `
         const modules = [\n${modules.join('')}];
         modules.forEach((obj) => {
             Object.keys(obj).forEach((key) => {
                 exports[key] = obj[key];
             });
-        });\
+        });
         `
-        fs.writeFileSync(utils.resolveDistPath('server/magpie.js'), data)
-        console.log(`${chalk.green('server/magpie.js')} create succeeded`)
+        fs.writeFileSync(utils.resolveDistPath('server/magpie.js'), jsBeautify(data))
+        console.log(`${chalk.green('server/magpie.js')} create succeeded\n`)
     })
 
     const options = {
@@ -42,31 +55,30 @@ function transformFiles() {
     })()
 }
 
-transformFiles()
+// generate "browser" directory files
+function transformFilesToBrowserDir() {
+    const template = `\
+    +function () {
+        if (!window.Magpie) window.Magpie = {};\n
+        {{content}}
+    }();\
+    `
 
-return;
+    ;['magpie.js'].concat(allFilename).forEach((filename) => {
+        const obj = require(utils.resolveDistPath(`server/${filename}`))
+        const content = []
 
-// grenarater browser mode
-const Magpie = require('../dist/server/magpie')
+        Object.keys(obj).forEach((key) => {
+            content.push(`var ${key} = Magpie.${key} = ${obj[key]}\n`)
+        })
 
-const content = []
-Object.keys(Magpie).forEach((key) => {
-    content.push(`var ${key} = Magpie.${key} = ${Magpie[key]}\n`)
-})
+        const data = template.replace(/{{content}}/gi, content.join(''))
+        fs.writeFileSync(utils.resolveDistPath(`browser/${filename}`), uglifyJS.minify(data).code)
+        console.log(`${chalk.green(`browser/${filename}`)} create succeeded`)
+    })
+}
 
-const data = `\
-+function () {
-    if (!window.Magpie) window.Magpie = {};\n
-    ${content.join('')}
-}();\
-`
+clearUpDistDir()
+transformFilesToServerDir()
+transformFilesToBrowserDir()
 
-fs.writeFile('../dist/browser/magpie.js', jsBeautify(data), (err) => {
-    if (err) throw err
-    console.log(`"magpie.js" create succeeded`)
-})
-
-fs.writeFile('../dist/browser/magpie.min.js', uglifyJS.minify(data).code, (err) => {
-    if (err) throw err
-    console.log(`"magpie.min.js" create succeeded`)
-})
