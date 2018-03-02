@@ -81,4 +81,3 @@ function transformFilesToBrowserDir() {
 clearUpDistDir()
 transformFilesToServerDir()
 transformFilesToBrowserDir()
-
