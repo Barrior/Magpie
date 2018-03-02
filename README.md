@@ -4,7 +4,7 @@ A validated JavaScript RegExp library.
 # Usage
 ## Browser
 ```
-<script src="magpie.all.js">
+<script src="magpie.js">
 <script>
 // 正则表达式
 Magpie.$email
@@ -21,12 +21,14 @@ Magpie.formatPassword('123456非英文字符')    // 123456
 </script>
 ```
 
-## Dynamic import
+## On-demand import
 ```
-<script src="magpie.email.js">
+<script src="magpie/email.js">
+<script src="magpie/password.js">
 <script>
 Magpie.$email
 Magpie.isEmail(a@b.c)                      // true
+Magpie.isPassword(123456)                  // true
 </script>
 ```
 
@@ -39,9 +41,10 @@ Magpie.$email
 Magpie.isEmail(a@b.c)                       // true
 ```
 
-## Dynamic import
+## On-demand import
 ```
 const {isEmail, $email} = require('magpie/email')
+const {isPassword, $password} = require('magpie/password')
 ```
 
 
