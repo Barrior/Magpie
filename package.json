@@ -10,7 +10,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix"
+      "eslint"
     ]
   },
   "ava": {
@@ -38,7 +38,9 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
     "js-beautify": "^1.7.5",
+    "lint-staged": "^7.0.0",
     "shelljs": "^0.8.1",
     "uglify-js": "^3.3.12"
   },
