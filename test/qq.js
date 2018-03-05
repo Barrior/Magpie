@@ -31,12 +31,12 @@ test('qq', (t) => {
     // Symbol type should throw an error,
     // other types(excluded Number) should return false.
     types.forEach((type) => {
-        const value = type.value
-        if (typeof value === 'symbol') {
+        const {value, type: typeString} = type
+        if (typeString === '[object Symbol]') {
             t.throws(() => {
                 t.false(isQQ(value))
             })
-        } else if (typeof value !== '[object Number]') {
+        } else if (typeString !== '[object Number]') {
             t.false(isQQ(value))
         }
     })
