@@ -1,16 +1,16 @@
 {
   "name": "Magpie",
   "version": "1.0.0",
-  "description": "A validated JavaScript RegExp library.",
+  "description": "A validated cross-platform(Browsers, Node.js) JavaScript RegExp library.",
   "scripts": {
-    "lint": "eslint --ext .js src,test,bin",
+    "lint": "eslint {bin,src,test}/**/*.js",
     "test": "ava --verbose",
     "build": "npm run lint && npm test && node ./bin/build",
     "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix --ext js"
+      "eslint --fix"
     ]
   },
   "ava": {
@@ -33,11 +33,18 @@
     "babel-preset-stage-2": "^6.24.1",
     "chalk": "^2.3.1",
     "eslint": "^4.18.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
     "js-beautify": "^1.7.5",
     "shelljs": "^0.8.1",
     "uglify-js": "^3.3.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barrior/Magpie.git"
   },
   "license": "MIT"
 }

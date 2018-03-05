@@ -47,4 +47,7 @@ const {isEmail, $email} = require('magpie/email')
 const {isPassword, $password} = require('magpie/password')
 ```
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
+Copyright (c) 2018 Barrior Wei
 

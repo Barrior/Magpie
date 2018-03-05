@@ -9,5 +9,5 @@
  */
 export const $telTW = /^1[345789]\d{9}$/
 export const isTelTW = (value) => {
-    return $telTW.test(value)
+  return $telTW.test(value)
 }

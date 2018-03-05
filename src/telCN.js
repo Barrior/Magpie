@@ -14,5 +14,5 @@
  */
 export const $telCN = /^1[345789]\d{9}$/
 export const isTelCN = (value) => {
-    return $telCN.test(value)
+  return $telCN.test(value)
 }

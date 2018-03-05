@@ -16,5 +16,5 @@
  */
 export const $qq = /^[1-9]\d{4,11}$/
 export const isQQ = (value) => {
-    return $qq.test(value)
+  return $qq.test(value)
 }

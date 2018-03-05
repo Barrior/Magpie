@@ -9,5 +9,5 @@
  */
 export const $telHK = /^1[345789]\d{9}$/
 export const isTelHK = (value) => {
-    return $telHK.test(value)
+  return $telHK.test(value)
 }

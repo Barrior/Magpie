@@ -5,5 +5,5 @@
  */
 export const $email = /^[a-z\d](([\w-]*)?[a-z\d])?@[a-z\d](([a-z\d-]*)?[a-z\d])?(\.[a-z\d]{2,6})*$/i
 export const isEmail = (value) => {
-    return $email.test(value)
+  return $email.test(value)
 }
