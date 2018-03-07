@@ -7,7 +7,7 @@
  */
 
 /**
- * Regular Spec:
+ * Spec:
  * https://baike.baidu.com/item/%E6%89%8B%E6%9C%BA%E5%8F%B7%E7%A0%81
  *
  * 采用宽松模式，只匹配前两位的正确格式
@@ -21,7 +21,7 @@ export const isTelCN = (value) => {
 }
 
 /**
- * Regular Spec:
+ * Spec:
  * https://zh.wikipedia.org/wiki/%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E5%88%86%E7%B1%BB%E8%AE%A1%E5%88%92
  * https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E7%94%B5%E8%AF%9D%E5%8C%BA%E5%8F%B7
  */

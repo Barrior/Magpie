@@ -8,7 +8,7 @@
  */
 
 /**
- * Regular Spec:
+ * Spec:
  * 1. Required 5~12 characters(preset max length of 12), only Number type.
  * 2. The first character can not be 0.
  *
