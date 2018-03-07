@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "A validated cross-platform(Browsers, Node.js) JavaScript RegExp library.",
   "scripts": {
-    "lint": "eslint {bin,src,test}/**/*.js",
+    "lint": "eslint {bin,src,test}/**/*.js --fix",
     "test": "ava --verbose",
     "build": "npm run lint && npm test && node ./bin/build",
     "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": [
-      "eslint"
+      "eslint --fix"
     ]
   },
   "ava": {
