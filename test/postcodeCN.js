@@ -8,6 +8,6 @@ test('isPassword', (t) => {
   t.true(isPostcodeCN('012345'))
   t.false(isPostcodeCN(12345))
   t.false(isPostcodeCN(1234567))
-  
+
   t.true(isPostcodeCN('123456'))
 })
