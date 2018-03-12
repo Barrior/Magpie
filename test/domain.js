@@ -1,7 +1,7 @@
 import test from 'ava'
 import {isDomain} from '../src/domain'
 
-test('isPassword', (t) => {
+test('isDomain', (t) => {
   /* Normal rules checkout */
   t.true(isDomain('a.com'))
   t.true(isDomain('a.a.com'))
